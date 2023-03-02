@@ -1,19 +1,23 @@
 package ru.xkr1se;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.experimental.FieldDefaults;
+
+import java.util.List;
+
 /**
  * @author xkr1se
  */
+@Getter
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class PaginationHelper {
-    private final int itemsPerPage;
-    private final int itemCount;
-    private final int pageCount;
-    private final boolean unequalItemLastPage;
+    int itemCount;
+    int pageCount;
+    int itemsPerPage;
+    boolean unequalItemLastPage;
 
-    /**
-     * The constructor takes in an array of items and a integer indicating how many
-     * items fit within a single page
-     */
-    public PaginationHelper(List<I> collection, int itemsPerPage) {
+    public PaginationHelper(List<?> collection, int itemsPerPage) {
         this.itemsPerPage = itemsPerPage;
 
         this.itemCount = collection.size();
@@ -21,24 +25,6 @@ public class PaginationHelper {
         this.pageCount = itemCount / itemsPerPage + (unequalItemLastPage ? 1 : 0);
     }
 
-    /**
-     * returns the number of items within the entire collection
-     */
-    public int itemCount() {
-        return itemCount;
-    }
-
-    /**
-     * returns the number of pages
-     */
-    public int pageCount() {
-        return pageCount;
-    }
-
-    /**
-     * returns the number of items on the current page. page_index is zero based.
-     * this method should return -1 for pageIndex values that are out of range
-     */
     public int pageItemCount(int pageIndex) {
         if(pageCount - 1 < pageIndex) {
             return -1;
@@ -51,10 +37,6 @@ public class PaginationHelper {
         return itemsPerPage;
     }
 
-    /**
-     * determines what page an item is on. Zero based indexes
-     * this method should return -1 for itemIndex values that are out of range
-     */
     public int pageIndex(int itemIndex) {
         if(itemCount == 0) {
             return -1;
