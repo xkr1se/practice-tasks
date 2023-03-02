@@ -1,0 +1,5 @@
+rootProject.name = 'practice-tasks'
+
+include 'task-1'
+include 'task-2'
+include 'task-3'

@@ -1,0 +1,15 @@
+subprojects {
+    apply plugin: 'java'
+
+    group 'ru.xkr1se'
+    version '1.0-SNAPSHOT'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compileOnly 'org.projectlombok:lombok:1.18.26'
+        annotationProcessor 'org.projectlombok:lombok:1.18.26'
+    }
+}
