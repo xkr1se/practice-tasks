@@ -19,7 +19,6 @@ public class PaginationHelper {
 
     public PaginationHelper(List<?> collection, int itemsPerPage) {
         this.itemsPerPage = itemsPerPage;
-
         this.itemCount = collection.size();
         this.unequalItemLastPage = itemCount % itemsPerPage != 0;
         this.pageCount = itemCount / itemsPerPage + (unequalItemLastPage ? 1 : 0);
